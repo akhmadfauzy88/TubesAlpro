@@ -1,8 +1,11 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <cstdio>
 
 using namespace std;
+
+int pilihan;
 
 struct agent{
 	
@@ -52,22 +55,84 @@ bool slogin(string username, string password)
 	}
 }
 
+void menu();
+
+void logout()
+{
+	system("cls");
+	menu();
+}
+
+void ordermenu(int pil)
+{
+	switch(pil)
+	{
+		
+	}
+}
+
+void dashboard(string usr)
+{
+	system("cls");
+	cout<<"+------------------------+"<<endl;
+	cout<<"  Username : "<<usr<<".travel"<<endl;
+	header();
+	cout<<"| 1. Hotel - 2. Flight   |"<<endl;
+	cout<<"| 3. Logout              |"<<endl;
+	cout<<"+------------------------+"<<endl;
+	cout<<"  Pilihan : ";cin>>pilihan;
+	ordermenu(pilihan);
+}
+
 void menu_utama(string user)
 {
-	cout<<"Username : "<<user<<".travel";
+	pilihan=3;
+	while(true)
+	{
+		dashboard(user);
+		if(pilihan==3) break;
+	}
 }
 
 void login()
 {
 	string a,b;
-	cout<<"User : ";cin>>a;
-	cout<<"Pass : ";cin>>b;
+	cout<<"  User : ";cin>>a;
+	cout<<"  Pass : ";cin>>b;
 	
 	if(slogin(a,b)==true)
 	{
+		system("cls");
 		menu_utama(a);
 	}else{
-		cout<<"Login gagal";
+		cout<<"  Login gagal"<<endl<<"  ";
+		system("pause");
+		system("cls");
+	}
+}
+
+void regist()
+{
+	string a,b;
+	ofstream log("Data/user.txt", ios::app);
+	ofstream log1("Data/pass.txt", ios::app);
+	
+	cout<<"  Username : ";cin>>a;
+	cout<<"  Password : ";cin>>b;
+	
+	log << endl << a;
+	log1 << endl << b;
+	
+	log.close();
+	log1.close();
+}
+
+void order(int pil)
+{
+	switch(pil)
+	{
+		case 1: login();break;
+		case 2: regist();break;
 	}
 }
 
@@ -75,12 +140,19 @@ void menu()
 {
 	header();
 	cout<<"| 1. Login - 2. Register |"<<endl;
+	cout<<"| 3. Exit                |"<<endl;
 	cout<<"+------------------------+"<<endl;
+	cout<<"  Pilihan : ";cin>>pilihan;
+	order(pilihan);
 }
 
 int main()
 {
-	menu();
-	raw_login_data();
+	while(true)
+	{
+		raw_login_data();
+		menu();
+		if(pilihan==3) break;
+	}
 	
 }
