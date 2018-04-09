@@ -4,9 +4,9 @@
 Travel Agent v2
 
 Kelompok : 
- - Akhmad Fauzy
- - Denada
- - Sandiv
- - Tere
+ - Akhmad Fauzy E
+ - Denada Putri
+ - M Sandiv Alfajri
+ - Teresiano Jose FG
  
 Bahasa : C++
