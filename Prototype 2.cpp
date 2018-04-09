@@ -62,12 +62,13 @@ void logout()
 	system("cls");
 	menu();
 }
-
+void flight();
 void ordermenu(int pil)
 {
 	switch(pil)
 	{
-		
+		case 2 : flight();
+	
 	}
 }
 
@@ -117,19 +118,8 @@ void regist()
 	ofstream log("Data/user.txt", ios::app);
 	ofstream log1("Data/pass.txt", ios::app);
 	
-	a:
 	cout<<"  Username : ";cin>>a;
 	cout<<"  Password : ";cin>>b;
-	
-	for(int i=0;i<60;i++)
-	{
-		if(a==raw_str_login[i][0])
-		{
-			cout<<"Data Sudah ada "<<endl;
-			system("cls");
-			goto a;
-		}
-	}
 	
 	log << endl << a;
 	log1 << endl << b;
@@ -144,6 +134,7 @@ void order(int pil)
 	{
 		case 1: login();break;
 		case 2: regist();break;
+		
 	}
 }
 
@@ -156,6 +147,55 @@ void menu()
 	cout<<"  Pilihan : ";cin>>pilihan;
 	order(pilihan);
 }
+void flight(){
+	string asal, tujuan,nama;
+	int pil,a,b;
+	int pax,tgl1,bul;
+	cout<<"==========================================="<<endl;
+	cout<<"Selamat datang di Paket Booking Penerbangan"<<endl;
+	cout<<"==========================================="<<endl;
+	cout<<endl;
+	cout<<"Masukkan Kota Asal: ";cin>>asal;cout<<endl;
+	cout<<"Masukkan Kota Tujuan: ";cin>>tujuan;
+	cout<<"--------------------------------------------------------------------------";cout<<endl;
+	cout<<"1. "<<asal<<"-"<<tujuan<<" LA211QZ "<<" 00.30 WIB-03.30WIB "<<" Rp.450.000"<<endl;
+	cout<<"2. "<<asal<<"-"<<tujuan<<" GIA2312 "<<" 14.30 WIB-17.30WIB "<<" Rp.1.250.000"<<endl;
+	cout<<"======================================================================="<<endl;
+	cout<<endl;
+	cout<<"Masukkan pilihan anda : ";cin>>pil;
+	cout<<"Pax (maksimal 2 penumpang dalam sekali pembelian): ";cin>>pax;
+	
+		if(pax==1){
+	cout<<"Nama Penumpang : ";cin>>nama;
+	cout<<"Tanggal Keberangkatan : ";cin>>tgl1;
+	cout<<"Bulan Keberangkatan : ";cin>>bul;
+	cout<<endl;
+	cout<<"================================"<<endl;
+	
+		if(pil==1){
+	a=450000;
+	b=a*pax;
+	cout<<endl;
+		if(pax==1){
+	cout<<nama<<endl;
+	cout<<"Melakukan Pemesanan pada Tanggal : "<<tgl1<<" "<<bul<<endl;
+	cout<<"Melakukan Pemesanan sebanyak : "<<pax<<" kursi"<<endl;
+	cout<<"Total Pembayaran : Rp. "<<b<<endl;
+	}
+	}
+		
+		if(pil==2){
+	a=1250000;
+	b=a*pax;
+	cout<<nama<<endl;
+	cout<<"Melakukan Pemesanan pada Tanggal : "<<tgl1<<endl;
+	cout<<"Melakukan Pemesanan sebanyak : "<<pax<<" kursi"<<endl;
+	cout<<"Total Pembayaran : Rp. "<<b<<endl;
+	
+	}	
+	}
+}
+
 
 int main()
 {
