@@ -117,8 +117,19 @@ void regist()
 	ofstream log("Data/user.txt", ios::app);
 	ofstream log1("Data/pass.txt", ios::app);
 	
+	a:
 	cout<<"  Username : ";cin>>a;
 	cout<<"  Password : ";cin>>b;
+	
+	for(int i=0;i<60;i++)
+	{
+		if(a==raw_str_login[i][0])
+		{
+			cout<<"Data Sudah ada "<<endl;
+			system("cls");
+			goto a;
+		}
+	}
 	
 	log << endl << a;
 	log1 << endl << b;
