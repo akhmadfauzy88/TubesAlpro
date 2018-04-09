@@ -7,5 +7,6 @@ Kelompok :
  - Akhmad Fauzy
  - Denada
  - Sandiv
+ - Tere
  
 Bahasa : C++
