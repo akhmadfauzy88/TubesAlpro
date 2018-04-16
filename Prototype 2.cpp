@@ -96,7 +96,7 @@ void hotel()
 		}
 		if (bayar>((cekot-cekin)*1000000)+50000)
 		{
-			cout<<"Cashback Sebesar Rp. "<<bayar-((cekot-cekin)*1000000)+50000 <<" dikembalikan ke rekeing anda"<<endl;
+			cout<<"Cashback Sebesar Rp. "<<bayar-(((cekot-cekin)*1000000)+50000) <<" dikembalikan ke rekeing anda"<<endl;
 		}
 	}
 	if (pilhot==2)
@@ -117,7 +117,7 @@ void hotel()
 		}
 		if (bayar>apem)
 		{
-			cout<<"Cashback Sebesar Rp. "<<bayar-((cekot-cekin)*1500000)+50000 <<" dikembalikan ke rekeing anda"<<endl;
+			cout<<"Cashback Sebesar Rp. "<<bayar-(((cekot-cekin)*1500000)+50000) <<" dikembalikan ke rekeing anda"<<endl;
 		}
 	}
 	system("pause");
@@ -307,3 +307,4 @@ int main()
 	}
 	
 }
+
