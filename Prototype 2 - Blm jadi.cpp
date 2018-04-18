@@ -1,21 +1,23 @@
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <cstdio>
-#include <sstream>
-#include <string.h>
-#include <windows.h>
+#include <iostream> // Base C++
+#include <string> // Getline
+#include <fstream> // File Operation
+#include <cstdio> // Base C
+#include <sstream> // Convert String to Int
+#include <string.h> // Strcpy
+#include <windows.h> // Color
 
 using namespace std;
 
 int pilihan;
 
-struct agent{
+struct agent
+{
 	string hotel[300][2];
-	string flight[300][2];
+	string flight[300][3];
 }data;
 
-struct agent2{
+struct agent2
+{
 	string resi_hotel[300][7];
 }resi;
 
@@ -496,11 +498,23 @@ void order(int pil)
 
 void menu()
 {
+	a:
 	header();
 	cout<<"| 1. Login - 2. Register |"<<endl;
 	cout<<"| 3. Exit                |"<<endl;
 	cout<<"+------------------------+"<<endl;
 	cout<<"  Pilihan : ";cin>>pilihan;
+	
+	if(cin.fail())
+	{
+		cin.clear();
+		cin.ignore();
+		cout<<"Masukan salah !!"<<endl;
+		system("pause");
+		system("cls");
+		goto a;
+	}
+	
 	order(pilihan);
 }
 
