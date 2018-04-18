@@ -3,21 +3,65 @@
 #include <fstream>
 #include <cstdio>
 #include <sstream>
+#include <string.h>
+#include <windows.h>
 
 using namespace std;
 
 int pilihan;
 
 struct agent{
-	string hotel[61][2];
-	
+	string hotel[300][2];
+	string flight[300][2];
 }data;
+
+struct agent2{
+	string resi_hotel[300][7];
+}resi;
 
 string raw_str_login[61][2];
 
+void asc()
+{
+	
+}
+
+void desc()
+{
+	
+}
+
+void sec()
+{
+	
+}
+
+void bin()
+{
+	
+}
+
+void sorting()
+{
+	cout<<"Sorting Berdasarkan : ";
+	cout<<"1. Ascending"<<endl;
+	cout<<"2. Descending"<<endl;
+	cout<<"Pilihan : ";cin>>pilihan;
+	switch(pilihan)
+	{
+		case 1: asc(); break;
+		case 2: desc(); break;
+	}
+}
+
+void searching()
+{
+	
+}
+
 void header()
 {
-	system("cls");
+	//system("cls");
 	cout<<"+------------------------+"<<endl;
 	cout<<"| T r a v e l  A g e n t |"<<endl;
 	cout<<"|  Booking Hotel Tanpa   |"<<endl;
@@ -51,21 +95,123 @@ void data_hotel()
 	hot1.close();
 }
 
-void resi(string nama, string bulan, int ckn, int cko, int tot, string usr)
+void resi_h(string nama, string bulan, int ckn, int cko, int tot, string usr, string kota)
 {
 	string resi1 = "Data/Hotel/Log/"+usr+"-nama.log";
 	string resi2 = "Data/Hotel/Log/"+usr+"-ckn.log";
 	string resi3 = "Data/Hotel/Log/"+usr+"-cko.log";
 	string resi4 = "Data/Hotel/Log/"+usr+"-lama.log";
 	string resi5 = "Data/Hotel/Log/"+usr+"-total.log";
+	string resi6 = "Data/Hotel/Log/"+usr+"-kota.log";
 	
-	//String to Char disini
+	char nm[100], ck[100], co[100], lm[100], ttl[100], kt[100];
 	
-	ofstream tm();
-	ofstream tm1();
-	ofstream tm2();
-	ofstream tm3();
-	ofstream tm4();
+	strcpy(nm, resi1.c_str());
+	strcpy(ck, resi2.c_str());
+	strcpy(co, resi3.c_str());
+	strcpy(lm, resi4.c_str());
+	strcpy(ttl, resi5.c_str());
+	strcpy(kt, resi6.c_str());
+	
+	ofstream tm(nm, ios::app);
+	ofstream tm1(ck, ios::app);
+	ofstream tm2(co, ios::app);
+	ofstream tm3(lm, ios::app);
+	ofstream tm4(ttl, ios::app);
+	ofstream tm5(kt, ios::app);
+	
+	tm<<nama<<endl;
+	tm1<<ckn<<endl;
+	tm2<<cko<<endl;
+	tm3<<cko-ckn<<endl;
+	tm4<<tot<<endl;
+	tm5<<kota<<endl;
+	
+	tm.close();
+	tm1.close();
+	tm2.close();
+	tm3.close();
+	tm4.close();
+	tm5.close();
+}
+
+void riwayat_h(string usr)
+{
+	string resi1 = "Data/Hotel/Log/"+usr+"-nama.log";
+	string resi2 = "Data/Hotel/Log/"+usr+"-ckn.log";
+	string resi3 = "Data/Hotel/Log/"+usr+"-cko.log";
+	string resi4 = "Data/Hotel/Log/"+usr+"-lama.log";
+	string resi5 = "Data/Hotel/Log/"+usr+"-total.log";
+	string resi6 = "Data/Hotel/Log/"+usr+"-kota.log";
+	
+	char nm[100], ck[100], co[100], lm[100], ttl[100], kt[100];
+	
+	strcpy(nm, resi1.c_str());
+	strcpy(ck, resi2.c_str());
+	strcpy(co, resi3.c_str());
+	strcpy(lm, resi4.c_str());
+	strcpy(ttl, resi5.c_str());
+	strcpy(kt, resi6.c_str());
+	
+	ifstream tm(nm);
+	ifstream tm1(ck);
+	ifstream tm2(co);
+	ifstream tm3(lm);
+	ifstream tm4(ttl);
+	ifstream tm5(kt);
+	
+	if(tm==NULL)
+	{
+		cout<<"Tidak ada data tranksasi"<<endl;
+		system("pause");
+		return;
+	}
+	
+	for(int i=1; i<=299; i++)
+	{
+		getline(tm, resi.resi_hotel[i][0]);
+		getline(tm1, resi.resi_hotel[i][1]);
+		getline(tm2, resi.resi_hotel[i][2]);
+		getline(tm3, resi.resi_hotel[i][3]);
+		getline(tm4, resi.resi_hotel[i][4]);
+		getline(tm5, resi.resi_hotel[i][5]);
+	}
+	
+	tm.close();
+	tm1.close();
+	tm2.close();
+	tm3.close();
+	tm4.close();
+	tm5.close();
+	
+	int ctr=0;
+	
+	for(int i=1;i<=299;i++)
+	{
+		if(resi.resi_hotel[i][0] != "")
+		{
+			cout<<"Nama Tamu         : "<<resi.resi_hotel[i][0]<<endl;
+			cout<<"Tanggal Check In  : "<<resi.resi_hotel[i][1]<<endl;
+			cout<<"Tanggal Check Out : "<<resi.resi_hotel[i][2]<<endl;
+			cout<<"Lama menginap     : "<<resi.resi_hotel[i][3]<<" Hari"<<endl;
+			cout<<"Total Biaya       : Rp."<<resi.resi_hotel[i][4]<<endl;
+			cout<<"Lokasi Hotel      : "<<resi.resi_hotel[i][5]<<endl<<endl;
+			ctr=+1;
+		}
+	}
+		
+	system("pause");
+}
+
+void riwayat (string usr)
+{
+	cout<<"Riwayat Tranksasi"<<endl;
+	cout<<"1. Hotel "<<endl<<"2. Flight"<<endl;
+	cout<<"Pilihan : ";cin>>pilihan;
+	switch(pilihan)
+	{
+		case 1: riwayat_h(usr);break;
+	}
 }
 
 bool slogin(string username, string password)
@@ -95,7 +241,7 @@ void logout()
 	menu();
 }
 
-void hotel()
+void hotel(string usr)
 {
 	data_hotel();
 	string kota,tamu,bulan;
@@ -173,11 +319,13 @@ void hotel()
 	cout<<"Resi Anda"<<endl;
 	cout<<"================================================"<<endl;
 	cout<<"Nama Tamu     : "<<tamu<<endl;
+	cout<<"Kota          : "<<kota<<endl;
 	cout<<"Check In      : "<<cekin<<" "<<bulan<<endl;
 	cout<<"Check Out     : "<<cekot<<" "<<bulan<<endl;
 	cout<<"Lama Menginap : "<<cekot-cekin<<" hari"<<endl;
 	cout<<"Total Biaya   : "<<"Rp."<<apem<<endl;
 	cout<<"Pembayaran    : "<<"Debet"<<endl;
+	resi_h(tamu, bulan, cekin, cekot, apem, usr, kota);
 	cout<<"================================================"<<endl;
 	system("pause");
 }
@@ -260,12 +408,13 @@ void flight()
 	system("pause");
 }
 
-void ordermenu(int pil)
+void ordermenu(int pil, string usr)
 {
 	switch(pil)
 	{
-		case 1: hotel();break;
+		case 1: hotel(usr);break;
 		case 2: flight();break;
+		case 3: riwayat(usr);break;
 	}
 }
 
@@ -275,20 +424,19 @@ void dashboard(string usr)
 	cout<<"+------------------------+"<<endl;
 	cout<<"  Username : "<<usr<<".travel"<<endl;
 	header();
-	cout<<"| 1. Hotel - 2. Flight   |"<<endl;
-	cout<<"| 3. Exit                |"<<endl;
+	cout<<"| 1. Hotel   2. Flight   |"<<endl;
+	cout<<"| 3. Riwayat 4. Logout   |"<<endl;
 	cout<<"+------------------------+"<<endl;
 	cout<<"  Pilihan : ";cin>>pilihan;
-	ordermenu(pilihan);
+	ordermenu(pilihan, usr);
 }
 
 void menu_utama(string user)
 {
-	pilihan=3;
 	while(true)
 	{
 		dashboard(user);
-		if(pilihan==3) break;
+		if(pilihan==4) break;
 	}
 }
 
@@ -323,7 +471,7 @@ void regist()
 	{
 		if(a==raw_str_login[i][0])
 		{
-			cout<<"  Data Sudah ada "<<endl;
+			cout<<"  Username telah terdaftar "<<endl;
 			system("pause");
 			system("cls");
 			goto a;
@@ -358,8 +506,10 @@ void menu()
 
 int main()
 {
+	system("Title Travel Agent v2 By Kelompok 1");
 	while(true)
 	{
+		system("cls");
 		raw_login_data();
 		menu();
 		if(pilihan==3) break;
